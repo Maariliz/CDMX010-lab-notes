@@ -1,4 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Happy+Monkey&family=Source+Sans+Pro:wght@400;600;700&display=swap');
+
+/*Menu arriba*/
+header{
+  display: flex;
+  align-content: space-around;
+}
 .headerTitle{
   font-family: Happy Monkey;
   font-style: normal;
@@ -8,7 +14,15 @@
   color: #A4243B;
   border: 2px;
   border-color: #A4243B;
+
 }
+
+.lightbulb{
+  width: 50px;
+  margin-left: 10 px;
+}
+
+/* crear nota */
 .createNote{
   display: flex;
   flex-direction: column;
@@ -20,32 +34,36 @@
   justify-content: flex-end;
 }
 .titleNoteArea{
-  background-color: #F7DA90;
-  width: 200px;
+  background-color: #FFC61D;
+  width: 300px;
   height: 25px;
   margin-bottom: 10px;
-  border: none;
+  border: 2px;
   border-radius: 5px;
   font-family: 'Source Sans Pro', sans-serif;
 }
 .noteArea{
-  background-color: #F7DA90;
+  background-color: #FFC61D;
   width: 300px;
   height: 150px;
+  margin-top: 10px;
   margin-bottom: 10px;
   border: none;
   border-radius: 5px;
   font-family: 'Source Sans Pro', sans-serif;
+  padding: 4px 4px 4px;
 }
+/*butón de guardar/actualizar nota nueva*/
 .buttonArea{
   display:flex;
   justify-content: flex-end;
+  margin-bottom: 10px;
 }
 .buttonSave{
-  background-color: #BF6455;
+  background-color: #C0324B;
   width: 100px;
   height: 25px;
-  background: #C06455;
+  background: #C0324B;
   border: none;
   border-radius: 5px;
   font-family: Happy Monkey;
@@ -54,5 +72,226 @@
   font-size: 16px;
   text-align: center;
   color: #FFFFFF;
-  
+}
+
+/* notas nuevas*/
+.savedNote{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.menuButtons{
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  align-content: space-around;
+
+}
+.buttonEdit{
+  width: 25px;
+  margin-right: 8px;
+}
+.buttonDelete{
+  width: 25px;
+  margin-right: 8px;
+}
+
+/*Welcome*/
+
+.welcomeText{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.welcomeBox{
+  display: flex;
+  flex-direction: column;
+  align-items: center ;
+}
+
+.welcomeBox p{
+  font-family: Happy Monkey;
+  font-style: normal;
+  font-size: 40px;
+  line-height: 54px;
+  text-align: center;
+  color: #A4243B;
+  border: 2px;
+}
+
+.welcomeLightbulb{
+  width: 132px;
+  height: 146px;
+}
+
+.aboutHp{
+  display: flex;
+  flex-direction: column;
+  align-items: center ;
+  width: 300px;
+}
+.aboutHp p{
+
+  font-family: Source Sans Pro;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 26px;
+  line-height: 33px;
+  text-align: center;
+  color: #8A7F7B;
+}
+
+.buttonsWelcome{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 300px;
+}
+
+.buttonWelcomeLogin{
+  margin-top: 40px;
+  width: 245px;
+  height: 37px;
+  background: #A4243B;
+  border-radius: 10px;
+  border: none;
+  font-family: Happy Monkey;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 23px;
+  line-height: 28px;
+  text-align: center;
+  color: #FFFFFF;
+}
+.buttonWelcomeSignup{
+  margin-top: 20px;
+  width: 245px;
+  height: 37px;
+  background: #A4243B;
+  border-radius: 10px;
+  border: none;
+  font-family: Happy Monkey;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 23px;
+  line-height: 28px;
+  text-align: center;
+  color: #FFFFFF;
+}
+
+/*signUp*/
+
+.signupText, .loginText{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.signupBox, .loginBox{
+  display: flex;
+  flex-direction: row;
+  align-items: center ;
+}
+
+.signupBox p, .loginBox p{
+  font-family: Happy Monkey;
+  font-style: normal;
+  font-size: 30px;
+  line-height: 54px;
+  text-align: center;
+  color: #A4243B;
+  border: 2px;
+}
+
+.signupLightbulb, .loginLightbulb {
+  width: 50px;
+  margin-left: 10 px;
+}
+
+
+.signupInvitation, .loginInvitation{
+  display: flex;
+  flex-direction: column;
+  align-items: center ;
+  width: 350px;
+}
+
+.signupInvitation p, .loginInvitation p{
+  font-family: Source Sans Pro;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 33px;
+  text-align: center;
+  color: #8A7F7B;
+}
+
+.signupInputs, .loginInputs{
+  display: flex;
+  flex-direction: column;
+  align-items: center ;
+}
+.writeName, .writeEmail, .writePassword, .writeEmailLogin, .writePasswordLogin{
+
+  width: 290px;
+  height: 20px;
+  margin-bottom: 20px;
+}
+
+.signupInputsAccounts, .loginInputsAccounts{
+  display: flex;
+  flex-direction: column;
+  align-items: center ;
+  width: 300px;
+}
+
+.signupInputsAccounts p, .loginInputsAccounts p{
+  font-family: Source Sans Pro;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 33px;
+  text-align: center;
+  color: #8A7F7B;
+}
+
+
+.buttonSignupGoogle, .buttonLoginGoogle{
+  margin-top: 20px;
+  width: 245px;
+  height: 37px;
+  background: #A4243B;
+  border-radius: 10px;
+  border: none;
+  font-family: Happy Monkey;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 28px;
+  text-align: center;
+  color: #FFFFFF;
+}
+.googleLogo{
+  width: 25px;
+
+}
+
+.buttonSignupFacebook, .buttonLoginFacebook {
+  margin-top: 20px;
+  width: 245px;
+  height: 37px;
+  background: #A4243B;
+  border-radius: 10px;
+  border: none;
+  font-family: Happy Monkey;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 28px;
+  text-align: center;
+  color: #FFFFFF;
+}
+.facebookLogo{
+  width: 25px;
+
 }

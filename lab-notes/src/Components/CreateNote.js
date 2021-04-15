@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { db } from '../firebaseConfig';
 
 
 function Create(props) {
@@ -21,20 +22,27 @@ function Create(props) {
     setValues({...initialStateValues})
   };
 
+  const getNotesById = async (id) =>{
+    const doc = await db.collection('notes').doc(id).get();
+    setValues({...doc.data()})
+  }
+
   useEffect(() => {
-    if (props.originalId === '') {
+    if (props.currentId === '') {
       setValues({...initialStateValues});
     } else {
-      console.log('editando nota')
+      getNotesById(props.currentId);
+
     }
-  }, [])
+  }, [props.currentId])
 
 return(
     <form className="noteBody" onSubmit={saveNote}>
       <div className="createNote">
         <header>
           <p className="headerTitle" > Happynotes </p>
-        </header>
+          <img className="lightbulb" src='/assets/idea.svg' alt="happyNotes"></img>
+          </header>
         <input
           className="titleNoteArea"
           placeholder="Título de tu nota"
@@ -49,7 +57,8 @@ return(
           onChange={stateNotesChange}
           value = {values.note}
         ></textarea>
-        <button className="buttonSave">Guardar</button>
+        <button className="buttonSave">{props.currentId === '' ? 'Guardar' : 'Actualizar'}</button>
+
      </div>
     </form>
 )

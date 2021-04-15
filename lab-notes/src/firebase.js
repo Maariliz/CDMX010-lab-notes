@@ -2,15 +2,27 @@ import React, { useEffect, useState } from "react";
 import Create from "./Components/CreateNote";
 import { db } from './firebaseConfig';
 
+
 const Crud =  () => {
 
   const [writingNotes, setWritingNotes] = useState([]);
-  const [originalId, setOriginalId] = useState('');
+  const [currentId, setCurrentId] = useState('');
 
 //crear una nota en la colección
   const addNote = async (linkObject) => {
-    await db.collection('notes').doc().set(linkObject)
-    console.log('new note added')
+    try{
+      if (currentId === ''){
+        await db.collection('notes').doc().set(linkObject)
+        console.log('new note added')
+      } else {
+        await db.collection('notes').doc(currentId).update(linkObject);
+        setCurrentId('');
+      }
+
+    } catch (error) {
+      console.log(error);
+    }
+
   }
 
 // traer la data desde Firebase para escribirla en happynotes
@@ -37,19 +49,19 @@ const Crud =  () => {
     }
   };
 
-// editar la nota
-
 
   return <div>
-      <Create {...{addNote, originalId, writingNotes}} />
+      <Create {...{addNote, currentId, writingNotes}} />
       <div className="savedNote">
         {writingNotes.map(link => (
           <div className="cardNote" key={link.id}>
             <div className="noteArea">
-              <h2>{link.title}</h2>
+              <h3>{link.title}</h3>
               <p>{link.note}</p>
-                <button className="buttonEdit" onClick={() => setOriginalId(link.id)}> Editar </button>
-                <button className="buttonDelete" onClick={() => deleteNote(link.id)}> Eliminar </button>
+                <div className="menuButtons">
+                  <img className="buttonEdit" src='/assets/boligrafo.svg' alt="editar" onClick={() => setCurrentId(link.id)}></img>
+                  <img className="buttonDelete" src='/assets/eliminar.svg' alt="eliminar" onClick={() => deleteNote(link.id)}></img>
+                </div>
             </div>
           </div>
         ))}
