@@ -1,10 +1,37 @@
 @import url('https://fonts.googleapis.com/css2?family=Happy+Monkey&family=Source+Sans+Pro:wght@400;600;700&display=swap');
 
 /*Menu arriba*/
+.logOutBox{
+  display: flex;
+  width: 300px;
+  justify-content: flex-end;
+  align-items: center;
+  height: 30px;
+}
+.logOut{
+
+  height: 20px;
+  display: flex;
+  background-color: #A4243B;
+  width: 110px;
+  background: #A4243B;
+  border: none;
+  border-radius: 5px;
+  font-family: Happy Monkey;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  text-align: center;
+  color: #FFFFFF;
+}
 header{
   display: flex;
-  align-content: space-around;
+  justify-content: center;
+  align-items: center;
+  width: 400px;
+  height: 80px;
 }
+
 .headerTitle{
   font-family: Happy Monkey;
   font-style: normal;
@@ -53,17 +80,17 @@ header{
   font-family: 'Source Sans Pro', sans-serif;
   padding: 4px 4px 4px;
 }
-/*butón de guardar/actualizar nota nueva*/
+/*btón de guardar/actualizar nota nueva*/
 .buttonArea{
   display:flex;
   justify-content: flex-end;
   margin-bottom: 10px;
 }
 .buttonSave{
-  background-color: #C0324B;
+  background-color: #A4243B;
   width: 100px;
   height: 25px;
-  background: #C0324B;
+  background: #A4243B;
   border: none;
   border-radius: 5px;
   font-family: Happy Monkey;

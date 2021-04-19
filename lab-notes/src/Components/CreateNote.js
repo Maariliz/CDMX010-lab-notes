@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { db } from '../firebaseConfig';
-
+import { db, auth } from '../firebaseConfig';
+import {useHistory} from 'react-router-dom'
 
 function Create(props) {
 
@@ -8,8 +8,27 @@ function Create(props) {
     title: '',
     note: '',
   };
-
   const [values, setValues] = useState(initialStateValues);
+  const [profile, setProfile]=useState(null)
+  const history =  useHistory()
+
+
+
+/* cerrar sesión y ver si está activo un perfil*/
+  useEffect ( () => {
+    auth.onAuthStateChanged ( (user) => {
+      if (user) {
+          setProfile(user.email)
+      }
+    })
+  }, [])
+  const handleLogOut = () =>{
+      auth.signOut()
+      setProfile(null)
+      history.push('/')
+  }
+
+
 
   const stateNotesChange = e => {
     const {name, value} = e.target;
@@ -39,10 +58,25 @@ function Create(props) {
 return(
     <form className="noteBody" onSubmit={saveNote}>
       <div className="createNote">
+        <div className="logOutBox">
+        {
+           profile ?
+            (
+
+            <button onClick= {handleLogOut}
+            className="logOut">
+            cerrar sesión </button>
+
+            )
+            :
+            ( <span></span>)
+         }
+        </div>
         <header>
           <p className="headerTitle" > Happynotes </p>
           <img className="lightbulb" src='/assets/idea.svg' alt="happyNotes"></img>
-          </header>
+
+         </header>
         <input
           className="titleNoteArea"
           placeholder="Título de tu nota"
@@ -66,3 +100,17 @@ return(
 
 export default Create;
 
+
+
+
+//
+
+// const handleUserProfile = () =>{
+//   const [profile, setProfile]= useState(null)
+// useEffect ( () => {
+//   auth.onAuthStateChanged ( (user) => {
+//     if (user) {
+//         setProfile(user.email)
+//     }
+//   })
+// }, [])
