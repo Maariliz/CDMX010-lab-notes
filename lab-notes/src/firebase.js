@@ -3,6 +3,7 @@ import Create from "./Components/CreateNote";
 import { db } from './firebaseConfig';
 
 
+
 const Crud =  () => {
 
   const [writingNotes, setWritingNotes] = useState([]);
@@ -46,8 +47,10 @@ const Crud =  () => {
     if (window.confirm('¿De verdad quieres borrar esta nota?')) {
       await db.collection('notes').doc(id).delete();
       console.log('nota eliminada')
+
     }
   };
+
 
 
   return <div>

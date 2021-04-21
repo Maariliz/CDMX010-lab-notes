@@ -25,10 +25,9 @@ function Create(props) {
   const handleLogOut = () =>{
       auth.signOut()
       setProfile(null)
+      window.confirm('¿Quieres cerrar sesión?')
       history.push('/')
   }
-
-
 
   const stateNotesChange = e => {
     const {name, value} = e.target;

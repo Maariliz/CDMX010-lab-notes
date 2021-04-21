@@ -1,8 +1,7 @@
 import React, {useState} from 'react';
 import { auth } from '../firebaseConfig';
 import {useHistory} from 'react-router-dom';
-// import {socialMediaAuth} from './auth';
-//import {socialMediaAuth} from './authMetods'
+
 
 
 function Login ({handlesetAutenticate}){
@@ -11,55 +10,40 @@ function Login ({handlesetAutenticate}){
   const [msgerror, setMsgError] = useState(null)
   const history =  useHistory()
 
-  //const [autenticate, setAutenticate]=useState(false)
+
 
  //REGISTRAR USUARIO CON EMAIL Y PASSWORD
-  const handleUserRegister = (e) =>{
-    e.preventDefault()
-     auth.createUserWithEmailAndPassword(email, pass)
-      //setAutenticate(true)
-      .then(r => {
-        history.push('/yournotes')
-      } )
-      .catch(e)
-      if (e.code === 'auth/invalid-email' ){
-          setMsgError('Formato de email incorrecto')
-      }
-      if (e.code === 'auth/weak-password'){
-        setMsgError('La contraseña debe tener al menos 6 caracteres')
-      };
-  }
+  // const handleUserRegister = (e) =>{
+  //   e.preventDefault()
+  //    auth.createUserWithEmailAndPassword(email, pass)
+  //     //setAutenticate(true)
+  //     .then(r => {
+  //       history.push('/yournotes')
+  //     } )
+  //     .catch(e)
+  //     if (e.code === 'auth/invalid-email' ){
+  //         setMsgError('Formato de email incorrecto')
+  //     }
+  //     if (e.code === 'auth/weak-password'){
+  //       setMsgError('La contraseña debe tener al menos 6 caracteres')
+  //     };
+  // }
 
   //INICIAR SESIÓN EMAIL Y PASSWORD
-  const handleUserLogin =() => {
+  const handleUserLogin =(e) => {
+    e.preventDefault()
       auth.signInWithEmailAndPassword(email, pass)
       .then((r) => {
         history.push('/yournotes')
       })
       .catch( (err) => {
-        if (err.code === 'auth/wrong-password' ){
-          setMsgError('Contraseña incorrecta')
-      }
+    
+      if (err.code === 'auth/wrong-password' ){
+        setMsgError('Contraseña incorrecta')
+
+    }
       })
   };
-
-// INICIAR SESIÓN GOOGLE
-
-// const socialMediaAuth = (provider) => {
-//   auth.signInWithPopup(provider)
-//   .then((res) => {
-//     return res.user;
-//   })
-//   .catch((er) => {
-//     return er;
-//   })
-// };
-
-//   const handleOnClick = async (provider) => {
-//     const res = await socialMediaAuth(provider);
-//     console.log(res);
-//   }
-
 
   return(
     <div className="loginText">
@@ -70,7 +54,7 @@ function Login ({handlesetAutenticate}){
        <div className="loginInvitation">
         <p> Inicia sesión para ver todas tus ideas guardadas en un mismo lugar </p>
       </div>
-          <form onSubmit={handleUserRegister} className="formLogin">
+          <form onSubmit={handleUserLogin} className="formLogin">
       <div className="loginInputs">
         <input
         onChange={(e) =>{setEmail(e.target.value)}}
@@ -84,9 +68,7 @@ function Login ({handlesetAutenticate}){
         className="writePasswordLogin"
         placeholder="Escribe tu contraseña">
         </input>
-        {/* botón de registro */}
 
-        <button  className="buttonWelcomeSignup">¡Regístrate!</button>
 
         {/*inicio de sesión*/}
 
@@ -98,18 +80,10 @@ function Login ({handlesetAutenticate}){
       </form>
       {
           msgerror !== null ?
-          ( <div> {msgerror} </div>) : ( <span> </span>)
+          ( <div className="errors"> {msgerror} </div>) : ( <span> </span>)
         }
 
-      <div className="loginInputsAccounts">
-        <p> o </p>
-        <button
-        className="buttonLoginGoogle"
-        >Inicia sesión con
-        <img className="googleLogo" src='/assets/search.svg' alt="google"></img> </button>
-        {/* <button className="buttonLoginFacebook"> Inicia sesión con <img className="facebookLogo" src='/assets/facebook.svg' alt="facebook"></img> </button> */}
 
-      </div>
     </div>
 
   )

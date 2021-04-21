@@ -1,84 +1,76 @@
-// import React, { useState } from 'react';
-// import { auth, provider } from '../firebaseConfig'
-
-// function Signup (){
-//     const [email, setEmail] = useState('')
-//     const [pass, setPass] = useState('')
-//     const [msgerror, setMsgError] = useState(null)
-
-//     const userRegister = (e) =>{
-//       e.preventDefault()
-//        auth.createUserWithEmailAndPassword(email, pass)
-//         .then(r => alert('usuario registrado!') )
-//         .catch(e)
-//         if (e.code === 'auth/invalid-email' ){
-//             setMsgError('Formato de email incorrecto')
-//         }
-//         if (e.code === 'auth/weak-password'){
-//           setMsgError('La contraseña debe tener al menos 6 caracteres')
-
-//       };
-
-//     }
+import React, {useState} from 'react';
+import { auth } from '../firebaseConfig';
+import {useHistory} from 'react-router-dom';
+// import {socialMediaAuth} from './auth';
+//import {socialMediaAuth} from './authMetods'
 
 
+function Login ({handlesetAutenticate}){
+  const [email, setEmail] = useState('')
+  const [pass, setPass] = useState('')
+  const [msgError, setMsgError] = useState(null)
+  const history =  useHistory()
+
+  //const [autenticate, setAutenticate]=useState(false)
+
+ //REGISTRAR USUARIO CON EMAIL Y PASSWORD
+  const handleUserRegister = (e) =>{
+    e.preventDefault()
+     auth.createUserWithEmailAndPassword(email, pass)
+      //setAutenticate(true)
+      .then(r => {
+        history.push('/yournotes')
+        alert('¡Registro exitoso!')
+      } )
+      .catch(e)
+      if (e.code === 'auth/invalid-email' ){
+          setMsgError('Formato de email incorrecto')
+      }
+      if (e.code === 'auth/weak-password'){
+        setMsgError('La contraseña debe tener al menos 6 caracteres')
+      };
+  }
+
+  return(
+    <div className="loginText">
+      <div className="loginBox">
+        <p className="loginTitle" > Happynotes </p>
+        <img className="loginLightbulb" src='/assets/idea.svg' alt="happyNotes"></img>
+        </div>
+       <div className="loginInvitation">
+        <p>Regístrate para comenzar a guardar todas tus ideas en un mismo lugar</p>
+      </div>
+          <form onSubmit={handleUserRegister} className="formLogin">
+      <div className="loginInputs">
+        <input
+        onChange={(e) =>{setEmail(e.target.value)}}
+        type="email"
+        className="writeEmailLogin"
+        placeholder="Escribe tu correo">
+       </input>
+        <input
+        type="password"
+        onChange={(e) =>{setPass(e.target.value)}}
+        className="writePasswordLogin"
+        placeholder="Escribe tu contraseña">
+        </input>
+        {/* botón de registro */}
+
+        <button  className="buttonWelcomeSignup">¡Regístrate!</button>
+
+        {/*inicio de sesión*/}
+
+      </div>
+      </form>
+      {
+          msgError !== null ?
+          ( <div className="errors"> {msgError} </div>) : ( <span> </span>)
+        }
 
 
-//   return(
-//     <div className="signupText">
+    </div>
 
-//       <div className="signupBox">
-//         <p className="signupTitle" > Happynotes </p>
-//         <img className="signupLightbulb" src='/assets/idea.svg' alt="happyNotes"></img>
-//         </div>
-//        <div className="signupInvitation">
-//         <p> Regístrate para ver todas tus ideas guardadas en un mismo lugar </p>
-//       </div>
-//       <div className="signupInputs">
+  )
+};
+export default Login;
 
-//         <form onSubmit={userRegister} className="formRegister">
-//         <input
-//         onChange={(e) =>{setEmail(e.target.value)}}
-//           type="email"
-
-//           className="writeEmail"
-//           placeholder="Escribe tu correo"/>
-//         <input
-//           onChange={(e) =>{setPass(e.target.value)}}
-//           type="password"
-//           className="writePassword"
-//           placeholder="Escribe tu contraseña"/>
-
-//         <button
-//         type="submit"
-//         className="buttonWelcomeSignup"> ¡Regístrate!
-//         </button>
-
-//         </form>
-
-//         {
-//           msgerror !== null ?
-//           ( <div> {msgerror} </div>) : ( <span> </span>)
-//         }
-
-//      </div>
-//       <div className="signupInputsAccounts">
-//         <p>O regístrate con alguna de tus cuentas</p>
-
-//         <button type="submit"
-//           onSubmit={googleRegister}
-//         className="buttonSignupGoogle">Registrate con
-//         <img className="googleLogo" src='/assets/search.svg'
-//         alt="google"></img> </button>
-
-//         <button type="button"
-//         className="buttonSignupFacebook">Registrate con
-//         <img className="facebookLogo" src='/assets/facebook.svg'
-//         alt="facebook"></img> </button>
-
-//       </div>
-
-//     </div>
-//   )
-// };
-// export default Signup;

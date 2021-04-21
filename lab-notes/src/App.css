@@ -322,3 +322,14 @@ header{
   width: 25px;
 
 }
+
+.errors{
+  font-family: Happy Monkey;
+  font-style: normal;
+  font-size: 20px;
+  line-height: 54px;
+  text-align: center;
+  color: #A4243B;
+  border: 2px;
+  border-color: #A4243B;
+}
